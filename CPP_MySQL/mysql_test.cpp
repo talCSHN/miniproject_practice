@@ -38,6 +38,16 @@ int main()
 	}
 	mysql_free_result(Result);							// 결과 비우기
 
+	const char* Query1 = "INSERT INTO chat (userid, message, timestamp) VALUES (1, \"Connection Test\", NOW())";	// 문자열 내에서 ""쓰려면 \써야함
+	Stat = mysql_query(ConnPtr, Query1);
+	if (Stat != 0) {
+		printf("MySQL Query error: %s\n", mysql_error(&Conn));
+		return 1;
+	}
+	else {
+		printf("INSERT Success\n");
+	}
+
 	// db 연결 해제
 	mysql_close(ConnPtr);
 
